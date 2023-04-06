@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 ...  2021 2022
+ * Copyright (c) 2011 ...  2023 2024
  *     John McCue <jmccue@jmcunx.com>
  *
  * Permission to use, copy, modify, and distribute this software for any
@@ -19,7 +19,41 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+#ifdef HAVE_JLIB
 #include <j_lib2.h>
+#else
+#define JLIB2_CHAR_NULL  ((char) '\0')
+#endif /* HAVE_JLIB */
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef HAVE_JLIB
+/*
+ * j2_is_numr() -- determines if all characters are numeric
+ */
+int j2_is_numr(char *s)
+
+{
+  if (s == (char *) NULL)
+    return((int) FALSE); /* NULL pointer */
+  
+  for ( ; (*s) != JLIB2_CHAR_NULL; s++)
+    {
+      if ( ! isdigit((int)(*s)) )
+	return(FALSE);
+    }
+  
+  return(TRUE);
+
+} /* j2_is_numr() */
+#endif /* not HAVE_JLIB */
 
 int main(int argc, char **argv)
 {
