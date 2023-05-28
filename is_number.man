@@ -31,10 +31,10 @@ The 'value' must be all numeric.
 If it contains a decimal point or thousand separator,
 the value is NOT considered numeric.
 .PP
-If no arguments are specified,
-zero is returned.
+If no arguments are specified, error code is st to 2.
 .SH ERROR-CODES
 .nf
 0 the value(s) are numeric
 1 the value(s) are not numeric
+2 no aruments specified
 .fi

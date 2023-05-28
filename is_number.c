@@ -58,15 +58,15 @@ int j2_is_numr(char *s)
 int main(int argc, char **argv)
 {
 
-  int r;
+  if (argc < 2)
+    exit(2);
 
   argv++;
   for ( ; (*argv) != NULL; argv++)
     {
-      r = j2_is_numr((*argv));
-      if ( ! r )
-	exit(EXIT_FAILURE);
+      if ( ! j2_is_numr((*argv)) )
+	exit(1);
     }
 
-  exit(EXIT_SUCCESS);
+  exit(0);
 }
